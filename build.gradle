@@ -5,7 +5,8 @@ repositories {
 apply plugin: 'java'
 
 dependencies {
-    compile 'no.tornado:tornadofx-controls:1.0.4'
+    implementation 'no.tornado:tornadofx-controls:1.0.4'
+	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
 }
 
 sourceSets {
@@ -24,15 +25,15 @@ jar {
 }
 
 task run(type: JavaExec, dependsOn: classes) {
-    group 'Run'
-    description 'Run program.'
-    main 'Main'
+    group = 'Run'
+    description = 'Run program.'
+    mainClass = 'main'
     classpath sourceSets.main.runtimeClasspath
 }
 
 task runJar(type: Exec, dependsOn: jar) {
-    group 'Run'
-    description 'Run jar executable.'
-    executable 'java'
-    args '-jar', "$jar.archivePath"
+    group = 'Run'
+    description = 'Run jar executable.'
+    executable = 'java'
+    args '-jar', "$jar.archiveFile"
 }
